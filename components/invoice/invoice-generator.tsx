@@ -329,8 +329,12 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
                   </View>
                 );
               })}
-
-              {props.data.type == "Invoice" ||
+              <ProInvoice
+                data={props.data}
+                totalDP={totalDP}
+                totalTax={totalTax}
+              />
+              {/* {props.data.type == "Invoice" ||
               props.data.type == "Penawaran" ? (
                 <Invoice data={props.data} totalTax={totalTax} />
               ) : (
@@ -344,7 +348,7 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
                 />
               ) : (
                 <></>
-              )}
+              )} */}
             </View>
           </div>
           {/* Total */}
@@ -398,7 +402,7 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
                     </Text>
                     <Text style={styles.footerText}>
                       1. Pembeli diharuskan untuk melakukan pembayaran muka
-                      sebesar 50% dari total pembelian.
+                      sebesar {props.data.dp}% dari total pembelian.
                     </Text>
                     <Text style={styles.footerText}>
                       2. Pembeli harus menyelesaikan pembayaran sisa tagihan
