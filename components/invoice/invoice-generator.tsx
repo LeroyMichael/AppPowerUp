@@ -425,6 +425,7 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
                       Pembayaran dilakukan Via Transfer BCA: 549-503-9932 A/N
                       ALVINO SETIO
                     </Text>
+                    <Text style={styles.text}>{props.data.memo}</Text>
                   </>
                 )}
               </div>
