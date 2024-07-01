@@ -226,11 +226,12 @@ export const styles = StyleSheet.create({
 });
 
 const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
-  const withDelivery = (props.data.subtotal ?? 0) + (props.data.delivery ?? 0);
-  const totalAfterDiscount = withDelivery - (props.data.discount ?? 0);
+  const totalAfterDiscount =
+    (props.data.subtotal ?? 0) - (props.data.discount ?? 0);
   const totalTax = (totalAfterDiscount * (props.data.tax ?? 0)) / 100;
   const total = totalAfterDiscount + totalTax;
   const totalDP = (total * (props.data.dp ?? 0)) / 100;
+  const grandTotal = totalDP + (props.data.delivery ?? 0);
 
   return (
     <Document>
@@ -353,7 +354,7 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
           </div>
           {/* Total */}
           <div>
-            <Text style={styles.totalPrice}>{rupiah(total)}</Text>
+            <Text style={styles.totalPrice}>{rupiah(grandTotal)}</Text>
             <Text
               style={{
                 ...styles.textBold,
