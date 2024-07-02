@@ -230,13 +230,13 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
     (props.data.subtotal ?? 0) - (props.data.discount ?? 0);
   const totalTax = (totalAfterDiscount * (props.data.tax ?? 0)) / 100;
   const total = totalAfterDiscount + totalTax;
-  let totalDP = 0;
-  if (props.data.dp == 0) {
-    totalDP = total;
+  const totalDP = (total * (props.data.dp ?? 0)) / 100;
+  let grandTotal = 0;
+  if (totalDP == 0) {
+    grandTotal = total + (props.data.delivery ?? 0);
   } else {
-    totalDP = (total * (props.data.dp ?? 0)) / 100;
+    grandTotal = totalDP * (props.data.delivery ?? 0);
   }
-  const grandTotal = totalDP + (props.data.delivery ?? 0);
 
   return (
     <Document>
