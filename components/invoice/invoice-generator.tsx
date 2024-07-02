@@ -231,11 +231,11 @@ const InvoiceGenerator = (props: { data: ProfileFormValues }) => {
   const totalTax = (totalAfterDiscount * (props.data.tax ?? 0)) / 100;
   const total = totalAfterDiscount + totalTax;
   const totalDP = (total * (props.data.dp ?? 0)) / 100;
-  let grandTotal = 0;
-  if (totalDP == 0) {
-    grandTotal = total + (props.data.delivery ?? 0);
-  } else {
-    grandTotal = totalDP * (props.data.delivery ?? 0);
+  let grandTotal = total + (props.data.delivery ?? 0);
+  if (totalDP != 0) {
+    if (props.data.type != "Penawaran") {
+      grandTotal = totalDP + (props.data.delivery ?? 0);
+    }
   }
 
   return (
