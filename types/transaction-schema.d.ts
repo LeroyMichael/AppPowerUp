@@ -58,7 +58,7 @@ export const profileFormSchema = z.object({
   invoiceDueDate: z.string(),
   estimatedTime: z.string(),
   isPreSigned: z.boolean(),
-  memo: z.string(),
+  memo: z.string().optional(),
 });
 
 export type ProfileFormValues = z.infer<typeof profileFormSchema>;
